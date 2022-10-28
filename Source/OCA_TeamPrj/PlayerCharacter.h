@@ -19,20 +19,35 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere)
+		TSoftObjectPtr<class ASplinePath> FollowPathPtr;
+
+	float GetSpeed();
 private:
-	//ƒCƒ“ƒvƒbƒg
+	//ã‚¤ãƒ³ãƒ—ãƒƒãƒˆ
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
 
 	UPROPERTY(EditAnywhere)
-	float InputRotationRate = 10.0f;
+		float InputRotationRate = 10.0f;
+
+	UPROPERTY(EditAnywhere)
+		class USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(EditAnywhere)
+		class UCameraComponent* CameraComp;
+
+	class ASplinePath* FollowPath;
+
+	//UPROPERTY(EditAnywhere)
+	//TSubclassOf<class ASplinePath> FollowPathClass;
 };
